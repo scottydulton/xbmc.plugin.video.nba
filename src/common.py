@@ -13,8 +13,14 @@ from utils import *
 
 
 PROTOCOLS = {
-    'mpd': {'extensions': ['mpd'], 'mimetype': 'application/dash+xml'},
-    'hls': {'extensions': ['m3u8', 'm3u'], 'mimetype': 'application/vnd.apple.mpegurl'},
+    'mpd': {
+        'extensions': ['mpd'],
+        'mimetype': 'application/dash+xml',
+    },
+    'hls': {
+        'extensions': ['m3u8', 'm3u'],
+        'mimetype': 'application/vnd.apple.mpegurl',
+    },
 }
 DRM = 'com.widevine.alpha'  # TODO Handle other DRM_SCHEMES
 LICENSE_URL = 'https://shield-twoproxy.imggaming.com/proxy'
