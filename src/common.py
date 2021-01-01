@@ -7,7 +7,6 @@ import urllib2
 import xbmc
 import xbmcaddon
 import xbmcgui
-from xml.dom.minidom import parseString
 
 import vars
 from utils import *
