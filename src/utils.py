@@ -29,6 +29,7 @@ def fetch(url):
     return response
 
 def littleErrorPopup(error, seconds=5000):
+    log(error, xbmc.LOGERROR)
     xbmc.executebuiltin('Notification(NBA League Pass,%s,%d,)' % (error, seconds))
 
 def logHttpException(exception, url, body=""):

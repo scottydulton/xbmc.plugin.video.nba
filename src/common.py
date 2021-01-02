@@ -111,9 +111,13 @@ def authenticate():
         })
 
         request = urllib2.Request('https://identity.nba.com/api/v1/auth', body, headers)
+        xbmc.log(str(request.get_data()), xbmc.LOGDEBUG)
+        xbmc.log(str(request.get_full_url()), xbmc.LOGDEBUG)
+        xbmc.log(str(request.get_method()), xbmc.LOGDEBUG)
         response = urllib2.urlopen(request)
         content = response.read()
         content_json = json.loads(content)
+        xbmc.log(str(content_json), xbmc.LOGDEBUG)
         vars.cookies = response.info()['Set-Cookie'].partition(';')[0]
     except urllib2.HTTPError as err:
         littleErrorPopup(err)
@@ -132,9 +136,13 @@ def authenticate():
         body = urllib.urlencode(body)
 
         request = urllib2.Request('https://watch.nba.com/secure/authenticate', body, headers)
+        xbmc.log(str(request.get_data()), xbmc.LOGDEBUG)
+        xbmc.log(str(request.get_full_url()), xbmc.LOGDEBUG)
+        xbmc.log(str(request.get_method()), xbmc.LOGDEBUG)
         response = urllib2.urlopen(request)
         content = response.read()
         content_json = json.loads(content)
+        xbmc.log(str(content_json), xbmc.LOGDEBUG)
         vars.access_token = content_json['data']['accessToken']
     except urllib2.HTTPError as err:
         littleErrorPopup(err)
