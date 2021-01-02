@@ -243,7 +243,7 @@ def addGamesLinks(date='', video_type="archive"):
 
                     if playoff_game_number != 0:
                         name += ' (game %d)' % (playoff_game_number)
-                    if vars.show_records_and_scores and not future_video:
+                    if vars.show_records_and_scores and vs is not None and hs is not None:
                         name += ' %s:%s' % (vs, hs)
 
                         if playoff_status:

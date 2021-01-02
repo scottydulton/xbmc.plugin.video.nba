@@ -33,8 +33,8 @@ def addFavTeamGameLinks(fromDate, favTeamAbbrs, video_type='archive'):
                 v = details.get('v', '')
                 game_id = details.get('id', '')
                 game_start_date_est = details.get('d', '')
-                vs = details.get('vs', '')
-                hs = details.get('hs', '')
+                vs = details.get('vs')
+                hs = details.get('hs')
                 gs = details.get('gs', '')
 
                 video_has_away_feed = False
@@ -74,8 +74,8 @@ def addFavTeamGameLinks(fromDate, favTeamAbbrs, video_type='archive'):
 
                     # Add the teams' names and the scores if needed
                     name += ' %s vs %s' % (visitor_name, host_name)
-                    if vars.show_records_and_scores and not future_video:
-                        name += ' %s:%s' % (str(vs), str(hs))
+                    if vars.show_records_and_scores and vs is not None and hs is not None:
+                        name += ' %s:%s' % (vs, hs)
 
                     thumbnail_url = generateCombinedThumbnail(v, h)
 
