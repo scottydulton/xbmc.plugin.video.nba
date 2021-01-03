@@ -84,39 +84,11 @@ def get_game(video_id, video_type, video_ishomefeed, start_time, duration):
 
     xml = parseString(str(content))
     url = xml.getElementsByTagName("path")[0].childNodes[0].nodeValue
-    utils.log("response URL from publishpoint: %s" % url, xbmc.LOGDEBUG)
+    utils.log("URL: %s" % url, xbmc.LOGDEBUG)
     drm = xml.getElementsByTagName("drmToken")[0].childNodes[0].nodeValue
-    utils.log(drm, xbmc.LOGDEBUG)
+    utils.log("DRM: %s" % drm, xbmc.LOGDEBUG)
 
-    selected_video_url = ''
-    if video_type == "live":
-        if '.mpd' in url:
-            selected_video_url = url
-        else:
-            # Transform the url
-            match = re.search('(https?)://([^:]+)/([^?]+?)\?(.+)$', url)
-            protocol = match.group(1)
-            domain = match.group(2)
-            arguments = match.group(3)
-            querystring = match.group(4)
-
-            livecookies = "nlqptid=%s" % (querystring)
-            livecookiesencoded = urllib.quote(livecookies)
-
-            utils.log("live cookie: %s %s" % (querystring, livecookies), xbmc.LOGDEBUG)
-
-            url = "%s://%s/%s?%s" % (protocol, domain, arguments, querystring)
-
-            selected_video_url = "%s&Cookie=%s" % (url, livecookiesencoded)
-    else:
-        # Archive and condensed flow: We now work with HLS.
-        # The cookies are already in the URL and the server will supply them to ffmpeg later.
-        selected_video_url = url
-
-    if selected_video_url:
-        utils.log("the url of video %s is %s" % (video_id, selected_video_url), xbmc.LOGDEBUG)
-
-    return {'url': selected_video_url, 'drm': drm}
+    return {'url': url, 'drm': drm}
 
 def getHighlightGameUrl(video_id):
     url = 'https://watch.nba.com/service/publishpoint'
