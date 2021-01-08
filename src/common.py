@@ -3,7 +3,7 @@
 import json
 import datetime
 import urllib
-import urllib2
+import urllib3
 import xbmc
 import xbmcaddon
 import xbmcgui
@@ -57,8 +57,8 @@ def getFanartImage():
     # Get the feed url
     feed_url = "https://nlnbamdnyc-a.akamaihd.net/fs/nba/feeds/common/dl.js"
     xbmc.log(feed_url, xbmc.LOGINFO)
-    req = urllib2.Request(feed_url, None)
-    response = str(urllib2.urlopen(req).read())
+    req = urllib3.Request(feed_url, None)
+    response = str(urllib3.urlopen(req).read())
 
     try:
         # Parse
@@ -105,12 +105,12 @@ def authenticate():
             'rememberMe': True,
         })
 
-        request = urllib2.Request('https://identity.nba.com/api/v1/auth', body, headers)
-        response = urllib2.urlopen(request)
+        request = urllib3.Request('https://identity.nba.com/api/v1/auth', body, headers)
+        response = urllib3.urlopen(request)
         content = response.read()
         content_json = json.loads(content)
         vars.cookies = response.info()['Set-Cookie'].partition(';')[0]
-    except urllib2.HTTPError as err:
+    except urllib3.HTTPError as err:
         littleErrorPopup(err)
         return False
 
@@ -126,12 +126,12 @@ def authenticate():
         }
         body = urllib.urlencode(body)
 
-        request = urllib2.Request('https://watch.nba.com/secure/authenticate', body, headers)
-        response = urllib2.urlopen(request)
+        request = urllib3.Request('https://watch.nba.com/secure/authenticate', body, headers)
+        response = urllib3.urlopen(request)
         content = response.read()
         content_json = json.loads(content)
         vars.access_token = content_json['data']['accessToken']
-    except urllib2.HTTPError as err:
+    except urllib3.HTTPError as err:
         littleErrorPopup(err)
         return False
 
