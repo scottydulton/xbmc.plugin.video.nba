@@ -4,13 +4,13 @@
        version="1.0.1"
        provider-name="maxgalbu, ptsampoukas, robla">
   <requires>
-    <import addon="xbmc.python" version="2.20.0"/>
+    <import addon="xbmc.python" version="3.0.0"/>
     <import addon="script.common.plugin.cache" version="0.9.1"/>
     <import addon="script.module.dateutil" version="2.8.1"/>
     <import addon="script.module.pytz" version="2014.2"/>
     <import addon="script.module.six" version="1.9.0"/>
     <import addon="script.module.pil" version="1.1.7"/>
-    <import addon="script.module.inputstreamhelper" version="0.5.0"/>
+    <import addon="script.module.inputstreamhelper" version="0.5.2"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="main.py">
     <provides>video</provides>
