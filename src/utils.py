@@ -4,7 +4,7 @@ import datetime
 import os
 import traceback
 import urllib
-import urllib2
+import urllib3
 import urlparse
 import sys
 
@@ -24,7 +24,7 @@ import vars
 def fetch(url):
     log('Fetching %s' % url, xbmc.LOGINFO)
     request = urllib2.Request(url)
-    response = str(urllib2.urlopen(request).read())
+    response = str(urllib3.urlopen(request).read())
     log(response, xbmc.LOGDEBUG)
     return response
 
