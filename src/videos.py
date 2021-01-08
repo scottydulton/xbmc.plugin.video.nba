@@ -3,7 +3,7 @@
 import json
 import datetime, time
 from datetime import timedelta
-import urllib, urllib2
+import urllib, urllib3
 import xbmc, xbmcplugin, xbmcgui, xbmcaddon
 from xml.dom.minidom import parseString
 import re
@@ -95,7 +95,7 @@ def videoListMenu():
     url = base_url + params
     log("videoListMenu: %s: url of date is %s" % (video_tag, url), xbmc.LOGDEBUG)
 
-    response = urllib2.urlopen(url).read()
+    response = urllib3.urlopen(url).read()
     response = response[response.find("{"):response.rfind("}")+1]
     log("videoListMenu: response: %s" % response, xbmc.LOGDEBUG)
 
@@ -172,10 +172,10 @@ def videoPlay():
     })
 
     try:
-        request = urllib2.Request(url, headers=headers)
-        response = urllib2.urlopen(request, body)
+        request = urllib3.Request(url, headers=headers)
+        response = urllib3.urlopen(request, body)
         content = response.read()
-    except urllib2.HTTPError as e:
+    except urllib3.HTTPError as e:
         logHttpException(e, url, body)
         littleErrorPopup("Failed to get video url. Please check log for details")
         return ''
