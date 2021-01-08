@@ -1,6 +1,6 @@
 
 
-import json, urllib2
+import json, urllib3
 import datetime, time
 from datetime import timedelta
 import xbmc, xbmcgui
@@ -20,8 +20,8 @@ def addFavTeamGameLinks(fromDate, favTeamAbbrs, video_type='archive'):
         log('Requesting %s' % schedule, xbmc.LOGDEBUG)
 
         now_datetime_est = nowEST()
-        req = urllib2.Request(schedule, None)
-        response = str(urllib2.urlopen(req).read())
+        req = urllib3.Request(schedule, None)
+        response = str(urllib3.urlopen(req).read())
         js = json.loads(response[response.find("{"):])
 
         unknown_teams = {}
